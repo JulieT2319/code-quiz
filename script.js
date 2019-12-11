@@ -32,6 +32,12 @@ var questionEl = document.getElementById("#questions");
 //display text
 var time = 75;
 
-//Answers
+//quiz control
+var quizStatus = "incomplete";
+var questionNow = 0;
 var correctAnswer;
 var userAnswer;
+
+responseEl.addEventListener("click", function () {
+
+})
