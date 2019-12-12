@@ -39,7 +39,8 @@ var correctAnswer;
 var userAnswer;
 
 function clearQuiz() {
-	responseEl.innerHTML() = "";
+	responseEl.innerHTML = "";
+	questionEl.innerHTML = "";
 }
 
 
