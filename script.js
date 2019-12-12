@@ -34,7 +34,7 @@ var time = 75;
 
 //quiz control
 var quizStatus = "incomplete";
-var questionNow = 0;
+var questionNow = 1;
 var correctAnswer;
 var userAnswer;
 
@@ -43,7 +43,17 @@ function clearQuiz() {
 	questionEl.innerHTML = "";
 }
 
-
+function populate() {
+	for (i = 0; i < length.quizQuestions[questionNow].options; i++) {
+		var createButton = document.createElement("button");
+		var buttonText = document.createTextNode(quizQuestions[questionNow].options[i]);
+		createButton.appendChild(buttonText);
+		var addId = document.createAttribute("id");
+		addId.value = "choice-" + i;
+		createButton.setAttribute(addId);
+		responseEl.appendChild(createButton);
+	}
+}
 responseEl.addEventListener("click", function () {
 
 })
