@@ -38,6 +38,11 @@ var questionNow = 0;
 var correctAnswer;
 var userAnswer;
 
+function clearQuiz() {
+	responseEl.innerHTML() = "";
+}
+
+
 responseEl.addEventListener("click", function () {
 
 })
