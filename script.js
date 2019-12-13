@@ -45,17 +45,20 @@ function clearQuiz() {
 }
 
 function populate() {
-	for (i = 0; i < quizQuestions[questionNow].options.length; i++) {
-		var createButton = document.createElement("button");
-		var buttonText = document.createTextNode(quizQuestions[questionNow].options[i]);
-		createButton.appendChild(buttonText);
-		createButton.setAttribute("id", "choice-" + i);
-		responseEl.appendChild(createButton);
+	if (questionNow < quizQuestions.length) {
 
+		for (i = 0; i < quizQuestions[questionNow].options.length; i++) {
+			var createButton = document.createElement("button");
+			var buttonText = document.createTextNode(quizQuestions[questionNow].options[i]);
+			createButton.appendChild(buttonText);
+			createButton.setAttribute("id", "choice-" + i);
+			responseEl.appendChild(createButton);
+
+		}
+		questionEl.innerHTML = "<h1 class='question'>" + quizQuestions[questionNow].question + "</h1>"
+		correctAnswer = quizQuestions[questionNow].answer;
+		questionNow++
 	}
-	questionEl.innerHTML = "<h1 class='question'>" + quizQuestions[questionNow].question + "</h1>"
-	correctAnswer = quizQuestions[questionNow].answer;
-	questionNow++
 }
 
 function checkAnswer() {
