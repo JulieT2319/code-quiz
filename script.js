@@ -34,7 +34,7 @@ var time = 75;
 
 //quiz control
 var quizStatus = "incomplete";
-var questionNow = 1;
+var questionNow = 0;
 var correctAnswer;
 var userAnswer;
 
@@ -44,15 +44,16 @@ function clearQuiz() {
 }
 
 function populate() {
-	for (i = 0; i < length.quizQuestions[questionNow].options; i++) {
+	for (i = 0; i < quizQuestions[questionNow].options.length; i++) {
 		var createButton = document.createElement("button");
 		var buttonText = document.createTextNode(quizQuestions[questionNow].options[i]);
 		createButton.appendChild(buttonText);
-		var addId = document.createAttribute("id");
-		addId.value = "choice-" + i;
-		createButton.setAttribute(addId);
+		createButton.setAttribute("id", "choice-"+i);
 		responseEl.appendChild(createButton);
 	}
+	questionEl.innerHTML = "<h1 class='question'>"+quizQuestions[questionNow].question+"</h1>"
+	correctAnswer = quizQuestions[questionNow].answer;
+	questionNow++
 }
 responseEl.addEventListener("click", function () {
 
