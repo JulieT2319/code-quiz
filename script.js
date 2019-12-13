@@ -30,8 +30,8 @@ var timerEL = document.getElementById("timer");
 var questionEl = document.getElementById("questions");
 
 //display text
-var time = 75;
-
+var time = quizQuestions.length * 15;
+timerEL.innerText = time;
 //quiz control
 var quizStatus = "incomplete";
 var questionNow = 0;
