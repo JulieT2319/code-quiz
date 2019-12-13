@@ -64,8 +64,6 @@ function checkAnswer() {
 	} else {
 		resultEl.innerHTML = "<h1 class='wrong'>That is not correct.</h1>";
 		time -= 15;
-		//for testing purposes
-		console.log(time);
 	}
 	function clearResult() {
 
