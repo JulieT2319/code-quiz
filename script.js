@@ -75,5 +75,18 @@ function checkAnswer() {
 	clearInterval(clearResult);
 }
 responseEl.addEventListener("click", function () {
+	var element = event.target;
 
+	if (element.matches("button")) {
+		var elId = element.getAttribute("id");
+		if (elId === "start") {
+			clearQuiz();
+			populate();
+		} else {
+			userAnswer = element.innerHTML;
+			checkAnswer();
+			clearQuiz();
+			populate();
+		}
+	}
 })
