@@ -81,6 +81,7 @@ function populate() {
 			var buttonText = document.createTextNode(quizQuestions[questionNow].options[i]);
 			createButton.appendChild(buttonText);
 			createButton.setAttribute("id", "choice-" + i);
+			createButton.setAttribute("class", "btn btn-info");
 			responseEl.appendChild(createButton);
 
 		}
@@ -90,16 +91,16 @@ function populate() {
 	} else {
 		quizStatus = "completed";
 		questionEl.innerHTML = "<h1 class='score'> Your final score is " + time + "</h1>"
-		responseEl.innerHTML = 'Please enter your initials: <input type="text" id="initials" name="initials"><button id="add-score">Submit Score</button>'
+		responseEl.innerHTML = 'Please enter your initials: <input type="text" id="initials" name="initials"><button id="add-score" class="btn btn-info">Submit Score</button>'
 
 	}
 }
 
 function checkAnswer() {
 	if (correctAnswer === userAnswer) {
-		resultEl.innerHTML = "<h1 class='correct'>That's correct!</h1>";
+		resultEl.innerHTML = "<h1 class='text-success'>That's correct!</h1>";
 	} else {
-		resultEl.innerHTML = "<h1 class='wrong'>That is not correct.</h1>";
+		resultEl.innerHTML = "<h1 class='text-danger'>That is not correct.</h1>";
 		time -= 15;
 	}
 	function clearResult() {
@@ -139,7 +140,9 @@ responseEl.addEventListener("click", function () {
 				var buttonText = document.createTextNode("Play Again");
 				createButton.appendChild(buttonText);
 				createButton.setAttribute("id", "start");
+				createButton.setAttribute("class", "btn btn-info");
 				responseEl.appendChild(createButton);
+				questionEl.innerHTML = "<h1>Click Below to play again</h1>"
 			}
 		} else {
 			userAnswer = element.innerHTML;
@@ -157,11 +160,16 @@ headerEl.addEventListener("click", function () {
 		var state = element.getAttribute("display");
 		if (state === "closed") {
 			element.setAttribute("display", "open");
+			// var createH2 = document.createElement("H2");
+			// var h2Text = "High Scores";
+			// createH2.appendChild(h2Text);
+			// createH2.setAttribute("class", "text-info");
+			// scoresEl.appendChild(createH2);
 			for (i = 0; i < highScores.length; i++) {
 				var createP = document.createElement("p");
 				var pText = document.createTextNode(highScores[i]);
 				createP.appendChild(pText);
-				createP.setAttribute("class", "score");
+				createP.setAttribute("class", "text-info");
 				scoresEl.appendChild(createP);
 
 			}
