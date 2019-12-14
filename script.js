@@ -39,6 +39,24 @@ var questionNow = 0;
 var correctAnswer;
 var userAnswer;
 
+function displayTime() {
+
+	var timeInterval = setInterval(function () {
+		timerEL.innerText = time;
+		time--;
+
+		if (time === -1) {
+
+			clearInterval(timeInterval);
+		}
+		if (questionNow === quizQuestions.length) {
+
+			clearInterval(timeInterval);
+		}
+	}, 1000);
+}
+
+
 function clearQuiz() {
 	responseEl.innerHTML = "";
 	questionEl.innerHTML = "";
@@ -72,7 +90,7 @@ function checkAnswer() {
 
 		setTimeout(function () {
 			resultEl.innerHTML = "";
-		}, 1500)
+		}, 500)
 	}
 	clearResult();
 	clearInterval(clearResult);
@@ -83,6 +101,7 @@ responseEl.addEventListener("click", function () {
 	if (element.matches("button")) {
 		var elId = element.getAttribute("id");
 		if (elId === "start") {
+			displayTime();
 			clearQuiz();
 			populate();
 		} else {
