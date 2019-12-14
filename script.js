@@ -29,6 +29,7 @@ var responseEl = document.getElementById("responses");
 var timerEL = document.getElementById("timer");
 var questionEl = document.getElementById("questions");
 var resultEl = document.getElementById("result");
+var scorsEl = document.getElementById("scores");
 
 //display text
 var time = quizQuestions.length * 15;
@@ -38,6 +39,15 @@ var quizStatus = "incomplete";
 var questionNow = 0;
 var correctAnswer;
 var userAnswer;
+
+//score control
+var highScores = JSON.parse(localStorage.getItem("highScores"));
+var currentScore = "";
+
+
+if (highScores === null) {
+	highScores = [];
+}
 
 function displayTime() {
 
@@ -76,6 +86,11 @@ function populate() {
 		questionEl.innerHTML = "<h1 class='question'>" + quizQuestions[questionNow].question + "</h1>"
 		correctAnswer = quizQuestions[questionNow].answer;
 		questionNow++
+	} else {
+		time = timerEL.innerText;
+		questionEl.innerHTML = "<h1 class='score'> Your final score is " + time + "</h1>"
+		responseEl.innerHTML = 'Please enter your initials: <input type="text" id="initials" name="initials"><button id="add-score">Submit Score</button>'
+
 	}
 }
 
@@ -104,6 +119,18 @@ responseEl.addEventListener("click", function () {
 			displayTime();
 			clearQuiz();
 			populate();
+		} else if (elId === "add-score") {
+			var player = document.getElementById("initials").value;
+			time = timerEL.innerText;
+			currentScore = player + ": " + time;
+			highScores.push(currentScore);
+			localStorage.setItem("highScores", JSON.stringify(highScores));
+			clearQuiz();
+			var createButton = document.createElement("button");
+			var buttonText = document.createTextNode("Play Again");
+			createButton.appendChild(buttonText);
+			createButton.setAttribute("id", "start");
+			responseEl.appendChild(createButton);
 		} else {
 			userAnswer = element.innerHTML;
 			checkAnswer();
