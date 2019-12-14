@@ -13,11 +13,13 @@
 
 <body>
 	<div id="header" class="container bg-info">
-		<button id="viewHighScores" display="closed" class="btn btn-info">High Scores</button>
+		<button id="viewHighScores" data-state="closed" class="btn btn-info">High Scores</button>
 		<h3 class="float-right">Timer: <span id="timer"></span> </h3>
 	</div>
-	<div id="scores" class="container text-center">
+	<div class="container text-center">
+		<ul id="scores" class="list-group">
 
+		</ul>
 	</div>
 	<div id="Quiz" class="container text-center">
 		<div id="questions">

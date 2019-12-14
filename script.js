@@ -157,24 +157,24 @@ headerEl.addEventListener("click", function () {
 	var element = event.target;
 	if (element.matches("button")) {
 
-		var state = element.getAttribute("display");
+		var state = element.getAttribute("data-state");
 		if (state === "closed") {
-			element.setAttribute("display", "open");
+			element.setAttribute("data-state", "open");
 			// var createH2 = document.createElement("H2");
 			// var h2Text = "High Scores";
 			// createH2.appendChild(h2Text);
 			// createH2.setAttribute("class", "text-info");
 			// scoresEl.appendChild(createH2);
 			for (i = 0; i < highScores.length; i++) {
-				var createP = document.createElement("p");
-				var pText = document.createTextNode(highScores[i]);
-				createP.appendChild(pText);
-				createP.setAttribute("class", "text-info");
-				scoresEl.appendChild(createP);
+				var createLi = document.createElement("li");
+				var liText = document.createTextNode(highScores[i]);
+				createLi.appendChild(liText);
+				createLi.setAttribute("class", "text-info list-group-item");
+				scoresEl.appendChild(createLi);
 
 			}
 		} else if (state === "open") {
-			element.setAttribute("display", "closed");
+			element.setAttribute("data-state", "closed");
 			scoresEl.innerHTML = "";
 		}
 	}
