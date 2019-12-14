@@ -10,7 +10,7 @@ This is a multiple-choice javascript quiz.
 
 ## Where it is
 
-The live deployment of this quiz is located here <https//juliet2319.github.io/code-quiz/>
+The live deployment of this quiz is located here <https://juliet2319.github.io/code-quiz/>
 
 ## How to use it
 
