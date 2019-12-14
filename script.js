@@ -55,11 +55,7 @@ function displayTime() {
 		timerEL.innerText = time;
 		time--;
 
-		if (time === -1) {
-
-			clearInterval(timeInterval);
-		}
-		if (questionNow === quizQuestions.length) {
+		if (quizStatus === "completed") {
 
 			clearInterval(timeInterval);
 		}
@@ -87,7 +83,7 @@ function populate() {
 		correctAnswer = quizQuestions[questionNow].answer;
 		questionNow++
 	} else {
-		time = timerEL.innerText;
+		quizStatus = "completed";
 		questionEl.innerHTML = "<h1 class='score'> Your final score is " + time + "</h1>"
 		responseEl.innerHTML = 'Please enter your initials: <input type="text" id="initials" name="initials"><button id="add-score">Submit Score</button>'
 
@@ -121,7 +117,6 @@ responseEl.addEventListener("click", function () {
 			populate();
 		} else if (elId === "add-score") {
 			var player = document.getElementById("initials").value;
-			time = timerEL.innerText;
 			currentScore = player + ": " + time;
 			highScores.push(currentScore);
 			localStorage.setItem("highScores", JSON.stringify(highScores));
