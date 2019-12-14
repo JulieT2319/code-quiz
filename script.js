@@ -126,16 +126,21 @@ responseEl.addEventListener("click", function () {
 			populate();
 		} else if (elId === "add-score") {
 			var player = document.getElementById("initials").value;
-			time = timerEL.innerText;
-			currentScore = player + ": " + time;
-			highScores.push(currentScore);
-			localStorage.setItem("highScores", JSON.stringify(highScores));
-			clearQuiz();
-			var createButton = document.createElement("button");
-			var buttonText = document.createTextNode("Play Again");
-			createButton.appendChild(buttonText);
-			createButton.setAttribute("id", "start");
-			responseEl.appendChild(createButton);
+			if (player === "") {
+				alert("Enter your initials to save your score.")
+			} else {
+
+				time = timerEL.innerText;
+				currentScore = player + ": " + time;
+				highScores.push(currentScore);
+				localStorage.setItem("highScores", JSON.stringify(highScores));
+				clearQuiz();
+				var createButton = document.createElement("button");
+				var buttonText = document.createTextNode("Play Again");
+				createButton.appendChild(buttonText);
+				createButton.setAttribute("id", "start");
+				responseEl.appendChild(createButton);
+			}
 		} else {
 			userAnswer = element.innerHTML;
 			checkAnswer();
