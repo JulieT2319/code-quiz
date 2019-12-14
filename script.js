@@ -29,7 +29,8 @@ var responseEl = document.getElementById("responses");
 var timerEL = document.getElementById("timer");
 var questionEl = document.getElementById("questions");
 var resultEl = document.getElementById("result");
-var scorsEl = document.getElementById("scores");
+var scoresEl = document.getElementById("scores");
+var headerEl = document.getElementById("header");
 
 //display text
 var time = quizQuestions.length * 15;
@@ -56,6 +57,10 @@ function displayTime() {
 		time--;
 
 		if (quizStatus === "completed") {
+
+			clearInterval(timeInterval);
+		}
+		if (time <= 0) {
 
 			clearInterval(timeInterval);
 		}
@@ -101,7 +106,7 @@ function checkAnswer() {
 
 		setTimeout(function () {
 			resultEl.innerHTML = "";
-		}, 500)
+		}, 750)
 	}
 	clearResult();
 	clearInterval(clearResult);
@@ -112,11 +117,16 @@ responseEl.addEventListener("click", function () {
 	if (element.matches("button")) {
 		var elId = element.getAttribute("id");
 		if (elId === "start") {
+			time = quizQuestions.length * 15;
+			timerEL.innerText = time;
+			quizStatus = "incomplete";
+			questionNow = 0;
 			displayTime();
 			clearQuiz();
 			populate();
 		} else if (elId === "add-score") {
 			var player = document.getElementById("initials").value;
+			time = timerEL.innerText;
 			currentScore = player + ": " + time;
 			highScores.push(currentScore);
 			localStorage.setItem("highScores", JSON.stringify(highScores));
@@ -134,3 +144,26 @@ responseEl.addEventListener("click", function () {
 		}
 	}
 })
+
+headerEl.addEventListener("click", function () {
+	var element = event.target;
+	if (element.matches("button")) {
+
+		var state = element.getAttribute("display");
+		if (state === "closed") {
+			element.setAttribute("display", "open");
+			for (i = 0; i < highScores.length; i++) {
+				var createP = document.createElement("p");
+				var pText = document.createTextNode(highScores[i]);
+				createP.appendChild(pText);
+				createP.setAttribute("class", "score");
+				scoresEl.appendChild(createP);
+
+			}
+		} else if (state === "open") {
+			element.setAttribute("display", "closed");
+			scoresEl.innerHTML = "";
+		}
+	}
+}
+);
